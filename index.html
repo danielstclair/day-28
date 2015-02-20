@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>PicUps</title>
+	<link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/normalize.css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="styles/css/main.css">
+</head>
+<body ng-app="app">
+	<div class="main-view" ng-controller="pics">
+		<div class="heading">
+			<a href="#" ng-click="picDrop()"><span class="ion-plus-circled"></span></a>
+		</div>
+		<div class="submit-form" ng-show="submitForm">
+			<div class="submit-content">
+				<input type="text" placeholder="Image URL" ng-model="imgInput" id="imgInput">
+				<p ng-show="imgError1">Cannot be left empty</p>
+				<p ng-show="imgError2">Image must be a URL!</p>
+				<p ng-show="imgSuccess" class="success">Success!</p>
+				<textarea placeholder="Image Caption" ng-model="imgCap" id="imgCap"></textarea>
+				<p ng-show="imgError1">Cannot be left empty</p>
+				<p ng-show="capSuccess" class="success">Success!</p>
+				<button class="add" ng-click="submitContent()"><span class="ion-image"></span> ADD IMAGE</button>
+				<button class="cancel">CANCEL</button>
+				<div class="clear-fix"></div>
+			</div>
+			
+		</div>
+	</div>
+	<!-- ng-show="submitForm" -->
+
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="scripts/app.js"></script>
+	<script type="text/javascript" src="scripts/controllers.js"></script>
+</body>
+</html>
