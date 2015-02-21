@@ -1,16 +1,50 @@
 angular.module('app.controller', []).controller('pics', function($scope, $http){
+	$scope.picsView = true;
+	$scope.myArray = [];
+
 	var promise = $http.get('http://tiny-pizza-server.herokuapp.com/collections/dspics')
-	.success(function(){
+	.success(function(response){
 		console.log('testing');
-	})
+		
+		for(var i=0; i<response.length; i++){
+			console.log('d')
+			if(response[i].url && response[i].caption){
+				$scope.myArray.push(response[i]);
+			}
+		}
+
+		console.log($scope.myArray)
+	}).error(function(err){
+		console.log(err)
+	});
 	$scope.picDrop = function(){
 		console.log('click');
 		$scope.submitForm = !$scope.submitForm;
-		// http://tiny-pizza-server.herokuapp.com/collections/dspics
 	}
 
-	$scope.submitContent = function(){
+	$scope.submitContent = function(img, caption){
 		console.log('test add')
+		var myImageExists = false;
+		for(var i = 0; i < $scope.myArray.length; i++){
+			console.log('testing')
+			if($scope.myArray[i].url === img){
+				myImageExists = true;
+			}
+		}
+
+		if(myImageExists === false){
+			$scope.myArray.push({url:img, caption: caption});
+			$http.post(
+				'http://tiny-pizza-server.herokuapp.com/collections/dspics',
+				{url: img,
+				caption: caption}
+				);
+		}
+
+		else{
+			alert('That image already exists.')
+		}
+
 		$scope.$watch('imgInput', function(){
 			if (!$scope.imgInput) {
 				$scope.imgError1 = true;
@@ -32,5 +66,10 @@ angular.module('app.controller', []).controller('pics', function($scope, $http){
 				$scope.capSuccess = true;
 			}
 		})
+
+
+
+		// promise();
+
 	}
 })

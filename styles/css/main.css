@@ -46,4 +46,11 @@ body {
     .submit-form .submit-content .clear-fix {
       clear: both; }
 
+.pic-display {
+  clear: both;
+  height: 500px;
+  background-color: red; }
+  .pic-display .picture {
+    background-image: url(http://thingstolookathigh.com/wp-content/uploads/2011/04/outer-space-stars.jpg); }
+
 /*# sourceMappingURL=main.css.map */

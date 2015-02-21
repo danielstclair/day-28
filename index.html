@@ -21,11 +21,17 @@
 				<textarea placeholder="Image Caption" ng-model="imgCap" id="imgCap"></textarea>
 				<p ng-show="imgError1">Cannot be left empty</p>
 				<p ng-show="capSuccess" class="success">Success!</p>
-				<button class="add" ng-click="submitContent()"><span class="ion-image"></span> ADD IMAGE</button>
+				<button class="add" ng-click="submitContent(imgInput, imgCap)"><span class="ion-image"></span> ADD IMAGE</button>
 				<button class="cancel">CANCEL</button>
 				<div class="clear-fix"></div>
 			</div>
 			
+		</div>
+		<div class="image-view">
+			<ul ng-repeat="picture in myArray">
+				<img ng-src="{{picture.url}}">
+				<p>{{picture.caption}}</p>
+			</ul>
 		</div>
 	</div>
 	<!-- ng-show="submitForm" -->
