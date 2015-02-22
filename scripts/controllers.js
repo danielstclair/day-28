@@ -20,10 +20,73 @@ angular.module('app.controller', []).controller('pics', function($scope, $http){
 	$scope.picDrop = function(){
 		console.log('click');
 		$scope.submitForm = !$scope.submitForm;
+		$scope.imgInput = '';
+		$scope.imgCap = '';
+		var pattern = /^((http|https|ftp):\/\/)/;
+		$scope.$watch('imgInput', function(){
+			if (!$scope.imgInput) {
+				$scope.imgError1 = true;
+				$scope.imgError2 = false;
+				// $scope.addButton = false;
+				$scope.imgSuccess = false;
+				$scope.capError = false;
+				$scope.imageCaption = false;
+			} 
+			// if($scope.imgInput.substring(0,7) !== 'http://'){
+			// 	$scope.imgError2 = true;
+			// 	$scope.imgError1 = false;
+			// 	// $scope.addButton = false;
+			// 	$scope.imgSuccess = false;
+			// 	$scope.capError = false;
+			// 	$scope.imageCaption = false;
+			// } 
+			// if ($scope.imgInput.substring(0,8) !== 'https://'){
+			// 	$scope.imgError2 = true;
+			// 	$scope.imgError1 = false;
+			// 	// $scope.addButton = false;
+			// 	$scope.imgSuccess = false;
+			// 	$scope.capError = false;
+			// 	$scope.imageCaption = false;
+			// } 
+			if($scope.imgInput.substring(0,8) == 'https://' || $scope.imgInput.substring(0,7) == 'http://') {
+				$scope.imgSuccess = true;
+				$scope.imgError2 = false;
+				$scope.imgError1 = false;
+				$scope.capError = true;
+				$scope.imageCaption = true;
+				// $scope.addButton = true;
+			} else{
+				$scope.imgError2 = true;
+				$scope.imgError1 = false;
+				// $scope.addButton = false;
+				$scope.imgSuccess = false;
+				$scope.capError = false;
+				$scope.imageCaption = false;
+			}
+
+		});
+
+			
+
+		$scope.$watch('imgCap', function(){
+			if (!$scope.imgCap) {
+				// $scope.capError = true;
+				$scope.capSuccess = false;
+				$scope.addButton = false;
+			} 
+			else{
+				$scope.capError = false;
+				$scope.capSuccess = true;
+				$scope.addButton = true;
+			}
+		})
+
+		
 	}
 
 	$scope.submitContent = function(img, caption){
 		console.log('test add')
+
 		var myImageExists = false;
 		for(var i = 0; i < $scope.myArray.length; i++){
 			console.log('testing')
@@ -33,43 +96,20 @@ angular.module('app.controller', []).controller('pics', function($scope, $http){
 		}
 
 		if(myImageExists === false){
-			$scope.myArray.push({url:img, caption: caption});
+			$scope.myArray.unshift({url:img, caption: caption});
 			$http.post(
 				'http://tiny-pizza-server.herokuapp.com/collections/dspics',
 				{url: img,
 				caption: caption}
 				);
+			$scope.imgInput = '';
+			$scope.imgCap = '';
+			$scope.submitForm = !$scope.submitForm;
 		}
 
 		else{
 			alert('That image already exists.')
 		}
-
-		$scope.$watch('imgInput', function(){
-			if (!$scope.imgInput) {
-				$scope.imgError1 = true;
-			} else if($scope.imgInput.substring(0,7) !== 'http://'){
-				$scope.imgError2 = true;
-				$scope.imgError1 = false;
-			} else {
-				$scope.imgSuccess = true;
-				$scope.imgError2 = false;
-				$scope.imgError1 = false;
-			}
-		});
-
-		$scope.$watch('imgCap', function(){
-			if (!$scope.imgCap) {
-				$scope.imgError1 = true;
-			} else{
-				$scope.imgError1 = false;
-				$scope.capSuccess = true;
-			}
-		})
-
-
-
-		// promise();
 
 	}
 })

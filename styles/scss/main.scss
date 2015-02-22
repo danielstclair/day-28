@@ -19,9 +19,22 @@ body{
 	margin-top: 35px;
 	clear: both;
 	font-size: 14px;
+	transition: all .2s ease-out;
+	button{
+		border: none;
+		border-radius: 3px;
+		color: white;
+		padding: 0 16px;}
+	.add{
+		background-color: #17aa56;
+		border-bottom: 3px solid #119e4d;
+		.ion-image{
+			font-size: 20px;}
+	}
+	.cancel{
+		background-color: #b6b6b6;}
 	.submit-content{
 		margin: 0 30px 0 20px;
-
 		input{
 			display: block;
 			padding-left: 10px;
@@ -30,11 +43,9 @@ body{
 			margin-bottom: 5px;
 			border: 1px solid #e0e1e2;}
 		p{
-			color: red;
-		}
+			color: red;}
 		.success{
-			color: green;
-		}
+			color: green;}
 		textarea{
 			width: 100%;
 			padding-top: 10px;
@@ -53,11 +64,58 @@ body{
 				clear: both;}
 	}
 }
-.pic-display{
+.image-view{
+	background-color: #e0e1e2;
 	clear: both;
-	height: 500px;
-	background-color: red;
-	.picture{
-		background-image: url(http://thingstolookathigh.com/wp-content/uploads/2011/04/outer-space-stars.jpg); 
+	padding: 30px 0;
+	.image-list{
+		padding: 0;
+		margin: 0 30px;
+		.image-items{
+			border: 1px solid #999;
+			margin-bottom: 20px;}
+		.images{
+			margin: 0 auto;
+			width: 100%;
+			height: auto;
+			padding: 0;}
+		.image-caption{
+			background-color: #fafafa;
+			padding: 0;
+			p{
+				margin: 0;
+				padding: 1em;}
+		}
 	}
 }
+
+
+@media screen and (min-width: 768px) {
+	.heading{
+		padding: 0 60px;
+	}
+	.image-view{
+		max-width: 760px;
+		margin: 0 auto;
+		margin-bottom: 50px;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
