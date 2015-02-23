@@ -30,10 +30,11 @@
 		<div class="image-view">
 			<ul class="image-list" ng-repeat="picture in myArray">
 				
-				<div class="image-items" ng:model="">
+				<div class="image-items" ng:model="selection">
 					
 					<img class="images" ng-src="{{picture.url}}" style="filter: '{{selection.values}}';">
 					<div class="image-caption"><p>{{picture.caption}}</p></div>
+					
 				</div>
 			</ul>
 		</div>

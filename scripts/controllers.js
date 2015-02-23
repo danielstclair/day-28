@@ -7,15 +7,15 @@ angular.module('app.controller', []).controller('pics', function($scope, $http){
 		console.log('testing');
 		
 		for(var i=0; i<response.length; i++){
-			console.log('d')
+			console.log('d');
 			if(response[i].url && response[i].caption){
 				$scope.myArray.push(response[i]);
 			}
 		}
 
-		console.log($scope.myArray)
+		console.log($scope.myArray);
 	}).error(function(err){
-		console.log(err)
+		console.log(err);
 	});
 	$scope.picDrop = function(){
 		console.log('click');
@@ -56,15 +56,15 @@ angular.module('app.controller', []).controller('pics', function($scope, $http){
 				$scope.capSuccess = true;
 				$scope.addButton = true;
 			}
-		})
-	}
+		});
+	};
 
 	$scope.submitContent = function(img, caption){
-		console.log('test add')
+		console.log('test add');
 
 		var myImageExists = false;
 		for(var i = 0; i < $scope.myArray.length; i++){
-			console.log('testing')
+			console.log('testing');
 			if($scope.myArray[i].url === img){
 				myImageExists = true;
 			}
@@ -81,9 +81,7 @@ angular.module('app.controller', []).controller('pics', function($scope, $http){
 			$scope.submitForm = !$scope.submitForm;
 		}
 		else{
-			alert('That image already exists.')
+			alert('That image already exists.');
 		}
-	}
-
-
-})
+	};
+});
