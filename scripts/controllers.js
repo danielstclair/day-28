@@ -27,50 +27,27 @@ angular.module('app.controller', []).controller('pics', function($scope, $http){
 			if (!$scope.imgInput) {
 				$scope.imgError1 = true;
 				$scope.imgError2 = false;
-				// $scope.addButton = false;
 				$scope.imgSuccess = false;
 				$scope.capError = false;
 				$scope.imageCaption = false;
 			} 
-			// if($scope.imgInput.substring(0,7) !== 'http://'){
-			// 	$scope.imgError2 = true;
-			// 	$scope.imgError1 = false;
-			// 	// $scope.addButton = false;
-			// 	$scope.imgSuccess = false;
-			// 	$scope.capError = false;
-			// 	$scope.imageCaption = false;
-			// } 
-			// if ($scope.imgInput.substring(0,8) !== 'https://'){
-			// 	$scope.imgError2 = true;
-			// 	$scope.imgError1 = false;
-			// 	// $scope.addButton = false;
-			// 	$scope.imgSuccess = false;
-			// 	$scope.capError = false;
-			// 	$scope.imageCaption = false;
-			// } 
 			if($scope.imgInput.substring(0,8) == 'https://' || $scope.imgInput.substring(0,7) == 'http://') {
 				$scope.imgSuccess = true;
 				$scope.imgError2 = false;
 				$scope.imgError1 = false;
 				$scope.capError = true;
 				$scope.imageCaption = true;
-				// $scope.addButton = true;
 			} else{
 				$scope.imgError2 = true;
 				$scope.imgError1 = false;
-				// $scope.addButton = false;
 				$scope.imgSuccess = false;
 				$scope.capError = false;
 				$scope.imageCaption = false;
 			}
-
 		});
-
-			
 
 		$scope.$watch('imgCap', function(){
 			if (!$scope.imgCap) {
-				// $scope.capError = true;
 				$scope.capSuccess = false;
 				$scope.addButton = false;
 			} 
@@ -80,8 +57,6 @@ angular.module('app.controller', []).controller('pics', function($scope, $http){
 				$scope.addButton = true;
 			}
 		})
-
-		
 	}
 
 	$scope.submitContent = function(img, caption){
@@ -94,7 +69,6 @@ angular.module('app.controller', []).controller('pics', function($scope, $http){
 				myImageExists = true;
 			}
 		}
-
 		if(myImageExists === false){
 			$scope.myArray.unshift({url:img, caption: caption});
 			$http.post(
@@ -106,10 +80,10 @@ angular.module('app.controller', []).controller('pics', function($scope, $http){
 			$scope.imgCap = '';
 			$scope.submitForm = !$scope.submitForm;
 		}
-
 		else{
 			alert('That image already exists.')
 		}
-
 	}
+
+
 })

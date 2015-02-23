@@ -16,7 +16,7 @@
 			<div class="submit-content">
 				<input type="text" placeholder="Image URL" ng-model="imgInput" id="imgInput">
 				<p ng-show="imgError1">Cannot be left empty</p>
-				<p ng-show="imgError2">Image must be a URL!</p>
+				<p ng-show="imgError2">Image must be a URL</p>
 				<p ng-show="imgSuccess" class="success">Success!</p>
 				<textarea placeholder="Image Caption" ng-show="imageCaption" ng-model="imgCap" id="imgCap"></textarea>
 				<p ng-show="capError">Cannot be left empty</p>
@@ -30,8 +30,9 @@
 		<div class="image-view">
 			<ul class="image-list" ng-repeat="picture in myArray">
 				
-				<div class="image-items">
-					<img class="images" ng-src="{{picture.url}}">
+				<div class="image-items" ng:model="">
+					
+					<img class="images" ng-src="{{picture.url}}" style="filter: '{{selection.values}}';">
 					<div class="image-caption"><p>{{picture.caption}}</p></div>
 				</div>
 			</ul>
